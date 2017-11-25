@@ -1,0 +1,28 @@
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\bin\Debug\Computing Project - UNO.exe
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\bin\Debug\Computing Project - UNO.pdb
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\bin\Debug\Computing Project - UNO.xml
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormGameMenu.resources
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormPlayAgainstPlayer.resources
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.Resources.resources
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\Computing Project - UNO.vbproj.GenerateResource.Cache
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\Computing Project - UNO.exe
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\Computing Project - UNO.xml
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\Computing Project - UNO.pdb
+C:\Users\lx\Documents\Visual Studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormChooseWildColour.resources
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormPlayAgainstAI.resources
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormChooseAI.resources
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormRules.resources
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\Computing Project - UNO.exe
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\Computing Project - UNO.xml
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\Computing Project - UNO.pdb
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\bin\Debug\Computing Project - UNO.exe
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\bin\Debug\Computing Project - UNO.pdb
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\bin\Debug\Computing Project - UNO.xml
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormChooseAI.resources
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormPlayAgainstAI.resources
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormChooseWildColour.resources
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormGameMenu.resources
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormPlayAgainstPlayer.resources
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.FormRules.resources
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\WindowsApplication2.Resources.resources
+E:\School Work\Computing\Project\Computing Project - UNO\Computing Project - UNO\obj\x86\Debug\Computing Project - UNO.vbproj.GenerateResource.Cache

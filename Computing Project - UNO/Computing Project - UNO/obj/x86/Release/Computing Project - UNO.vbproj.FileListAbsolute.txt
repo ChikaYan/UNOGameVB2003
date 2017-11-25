@@ -1,0 +1,10 @@
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Release\WindowsApplication2.FormGameMenu.resources
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Release\WindowsApplication2.FormPlayAgainstPlayer.resources
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Release\WindowsApplication2.Resources.resources
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Release\Computing Project - UNO.vbproj.GenerateResource.Cache
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\bin\Release\Computing Project - UNO.exe
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\bin\Release\Computing Project - UNO.pdb
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\bin\Release\Computing Project - UNO.xml
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Release\Computing Project - UNO.exe
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Release\Computing Project - UNO.xml
+C:\Users\lx\documents\visual studio 2010\Projects\Computing Project - UNO\Computing Project - UNO\obj\x86\Release\Computing Project - UNO.pdb

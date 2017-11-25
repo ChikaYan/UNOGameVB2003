@@ -1,0 +1,10 @@
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\bin\Debug\WindowsApplication2.exe
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\bin\Debug\WindowsApplication2.pdb
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\bin\Debug\WindowsApplication2.xml
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\obj\x86\Debug\WindowsApplication2.FormGameMenu.resources
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\obj\x86\Debug\WindowsApplication2.FormPlayAgainstPlayer.resources
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\obj\x86\Debug\WindowsApplication2.Resources.resources
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\obj\x86\Debug\WindowsApplication2.vbproj.GenerateResource.Cache
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\obj\x86\Debug\WindowsApplication2.exe
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\obj\x86\Debug\WindowsApplication2.xml
+C:\Users\lx\AppData\Local\Temporary Projects\WindowsApplication2\obj\x86\Debug\WindowsApplication2.pdb

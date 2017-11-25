@@ -1,0 +1,594 @@
+Module Module1
+
+    Sub Convert(ByRef s As Integer, ByRef c As Integer)
+
+        If c = -1 Then
+            Console.Write("None ")
+        ElseIf c = 1 Then
+            Console.Write("Red ")
+        ElseIf c = 2 Then
+            Console.Write("Golden ")
+        ElseIf c = 3 Then
+            Console.Write("Green ")
+        ElseIf c = 4 Then
+            Console.Write("Blue ")
+        ElseIf c = 5 Then
+        End If
+
+        If s >= 0 And s <= 9 Then
+            Console.Write(s)
+        ElseIf s = -1 Then
+            Console.Write("None")
+        ElseIf s = 10 Then
+            Console.Write("Skip")
+        ElseIf s = 11 Then
+            Console.Write("Skip")
+        ElseIf s = 12 Then
+            Console.Write("+2")
+        ElseIf s = 13 Then
+            '   Console.Write("Wild")
+        ElseIf s = 14 Then
+            Console.Write("Wild +4")
+        End If
+    End Sub
+
+    Sub SettingUpDeck(ByRef sdeck() As Integer, ByRef cdeck() As Integer)
+        Dim i, j As Integer
+
+        For i = 0 To 7 ' 123456789 skip skip +2 in four colours (2 each)
+            For j = 0 To 11
+                sdeck(12 * i + j) = j + 1
+
+                If i <= 3 Then
+                    cdeck(12 * i + j) = i + 1
+                Else
+                    cdeck(12 * i + j) = i - 3
+                End If
+            Next
+        Next
+
+        For i = 96 To 99 '0 in four colours 
+            sdeck(i) = 0
+            cdeck(i) = i - 95
+        Next
+
+        For i = 100 To 107
+            cdeck(i) = 5 'c = 5 means wild
+            If i <= 103 Then
+                sdeck(i) = 13
+            Else
+                sdeck(i) = 14
+            End If
+        Next
+    End Sub
+
+    Sub Deal(ByRef sp() As Integer, ByRef cp() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef DealingPlace As Integer)
+        Dim indicator As Integer
+
+        Randomize()
+        Do
+            indicator = Int(Rnd() * 108)
+        Loop Until sdeck(indicator) <> -1
+
+        sp(DealingPlace) = sdeck(indicator)
+        cp(DealingPlace) = cdeck(indicator)
+        sdeck(indicator) = -1
+
+        DealingPlace = DealingPlace + 1
+
+    End Sub
+
+
+
+    Sub SetUpHand(ByRef sp1() As Integer, ByRef cp1() As Integer, ByRef sp2() As Integer, ByRef cp2() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef DealingPlaceP1 As Integer, ByRef DealingPlaceP2 As Integer)
+        Dim i As Integer
+
+        For i = 0 To 107  'clean all the hand
+            sp1(i) = -1
+            sp2(i) = -1
+            cp1(i) = -1
+            cp2(i) = -1
+        Next
+        DealingPlaceP1 = 0   'start dealling at 0
+        DealingPlaceP2 = 0
+
+        For i = 1 To 7 'deal 7 cards to p1 and p2 
+            Deal(sp1, cp1, sdeck, cdeck, DealingPlaceP1)
+            Deal(sp2, cp2, sdeck, cdeck, DealingPlaceP2)
+        Next
+
+    End Sub
+
+
+    Sub DisplayHand(ByRef sp() As Integer, ByRef cp() As Integer, ByRef DealingPlace As Integer)
+        Dim i As Integer
+
+        For i = 0 To DealingPlace - 1
+            Console.Write(i + 1 & ". ")
+            Convert(sp(i), cp(i))
+            If sp(i) = 13 Then
+                Console.Write("Wild")
+            End If
+            Console.WriteLine()
+        Next
+
+    End Sub
+    Sub RemoveCard(ByRef sp() As Integer, ByRef cp() As Integer, ByRef CardNumber As Integer, ByRef DealingPlace As Integer)
+        Dim counter As Integer
+
+        For counter = CardNumber To DealingPlace - 2
+            sp(counter) = sp(counter + 1)
+            cp(counter) = cp(counter + 1)
+        Next
+
+        sp(DealingPlace - 1) = -1
+        cp(DealingPlace - 1) = -1
+
+        DealingPlace = DealingPlace - 1
+
+    End Sub
+    Sub PlayCard(ByRef sp() As Integer, ByRef cp() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef ns As Integer, ByRef nc As Integer, ByRef DealingPlace As Integer, ByRef RequestNumber As Integer)
+        Dim Validity As Boolean = False
+
+        '-1: skip, -2: wild +4
+
+        Validity = False
+
+        If ns = 10 Or ns = 11 Then 'word card skip was played last turn
+            RequestNumber = -1
+            Validity = True
+
+            ns = 13
+
+            Console.WriteLine()
+            Console.WriteLine("Your turn has been skipped!")
+            Console.WriteLine("Press any key to continue")
+            Console.ReadKey()
+
+        End If
+
+        If ns = 14 Then  'word card wild +4 was played last turn
+            RequestNumber = -2
+            Validity = True
+            Deal(sp, cp, sdeck, cdeck, DealingPlace)
+            Deal(sp, cp, sdeck, cdeck, DealingPlace)
+            Deal(sp, cp, sdeck, cdeck, DealingPlace)
+            Deal(sp, cp, sdeck, cdeck, DealingPlace)
+
+            ns = 13
+
+            Console.WriteLine()
+            Console.WriteLine("Your turn has been skipped!")
+            Console.WriteLine("Draw four extra cards!")
+            Console.WriteLine()
+            Console.WriteLine()
+            Console.WriteLine("Your current hand:")
+            DisplayHand(sp, cp, DealingPlace)
+            Console.WriteLine()
+            Console.WriteLine("Press any key to continue")
+            Console.ReadKey()
+
+        End If
+
+        Do While Validity = False
+            Console.WriteLine("Please Enter the Number of Card to Play (Enter 0 to Draw A Card / Skip This Turn):")
+            RequestNumber = Console.ReadLine()
+            If RequestNumber <> 0 Then 'play a card
+                If ((ns = sp(RequestNumber - 1) Or nc = cp(RequestNumber - 1) Or cp(RequestNumber - 1) = 5) And (ns <= 9 Or ns = 13)) Or (ns = 12 And sp(RequestNumber - 1) = 14) Or nc = -1 Then 'last palyed is not word card, and valid / last played card is word card and a wild +4 is used
+
+                    ns = sp(RequestNumber - 1)
+                    nc = cp(RequestNumber - 1)
+
+                    Console.WriteLine()
+                    Console.WriteLine()
+                    Console.Write("Card: ")
+                    Convert(sp(RequestNumber - 1), cp(RequestNumber - 1))
+                    If ns = 13 Then
+                        Console.Write("Wild")
+                    End If
+                    Console.WriteLine(" has been played!")
+                    If nc = 5 Then 'request colour for wild card played
+                        Console.WriteLine()
+                        Console.WriteLine("Name the next needed colour (1 means Red, 2 means Golden, 3 means Green, 4 means Blue):")
+
+                        Do
+                            nc = Console.ReadLine()
+                            If nc = 1 Then
+                                Console.WriteLine("Colour was set to Red")
+                            ElseIf nc = 2 Then
+                                Console.WriteLine("Colour was set to Golden")
+                            ElseIf nc = 3 Then
+                                Console.WriteLine("Colour was set to Green")
+                            ElseIf nc = 4 Then
+                                Console.WriteLine("Colour was set to Blue")
+                            Else
+                                nc = 9
+                                Console.WriteLine("Invalid value! Please enter 1 for Red, 2 for Golden, 3 for Green, 4 for Blue")
+                            End If
+                        Loop Until nc <> 9
+                    End If
+
+                    RemoveCard(sp, cp, RequestNumber - 1, DealingPlace)
+
+                    Console.WriteLine()
+                    Console.WriteLine("Your current hand:")
+                    DisplayHand(sp, cp, DealingPlace)
+                    Console.WriteLine()
+                    Console.WriteLine("Press any key to continue")
+                    Console.ReadKey()
+
+                    Validity = True
+
+                Else 'Not valid
+                    Console.WriteLine("You can't play this card!")
+                    Console.WriteLine("Please choose another card to play")
+                    Console.WriteLine()
+                    Validity = False
+                End If
+
+            Else 'Draw card/skip turn (requestnumber = 0)
+                Validity = True
+            End If
+
+        Loop
+
+    End Sub
+    Sub TurnP1(ByRef sp1() As Integer, ByRef cp1() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef ns As Integer, ByRef nc As Integer, ByRef DealingPlaceP1 As Integer)
+        Dim RequestNumber As Integer
+
+        Console.Clear()
+        Console.WriteLine("P1's TURN")
+        Console.WriteLine()
+        Console.WriteLine("Displaying P1's hand")
+        Console.WriteLine("P1's Hand: ")
+        DisplayHand(sp1, cp1, DealingPlaceP1)
+        Console.WriteLine()
+        Console.Write("The last card played is: ")
+        Convert(ns, nc)
+        Console.WriteLine()
+
+        PlayCard(sp1, cp1, sdeck, cdeck, ns, nc, DealingPlaceP1, RequestNumber) 'check valid / word card
+
+        If RequestNumber = 0 Then 'draw a card then determine whether play card or not, otherwise the turn is finshed
+
+            Deal(sp1, cp1, sdeck, cdeck, DealingPlaceP1)
+            Console.WriteLine()
+            Console.WriteLine("Your current hand:")
+            DisplayHand(sp1, cp1, DealingPlaceP1)
+            Console.WriteLine()
+            Console.Write("The last card played is: ")
+            Convert(ns, nc)
+            Console.WriteLine()
+
+            PlayCard(sp1, cp1, sdeck, cdeck, ns, nc, DealingPlaceP1, RequestNumber) 'check valid / word card
+
+            If RequestNumber = 0 Then 'skip the turn and punish +2
+                If ns = 12 Then '+2
+                    Console.WriteLine("Draw two extra cards!")
+                    Deal(sp1, cp1, sdeck, cdeck, DealingPlaceP1)
+                    Deal(sp1, cp1, sdeck, cdeck, DealingPlaceP1)
+                    ns = 13
+
+                    Console.WriteLine()
+                    Console.WriteLine("Your current hand:")
+                    DisplayHand(sp1, cp1, DealingPlaceP1)
+                    Console.WriteLine()
+                    Console.WriteLine("Press any key to continue")
+                    Console.ReadKey()
+                End If
+            End If
+        End If
+
+    End Sub
+
+    Sub TurnP2(ByRef sp2() As Integer, ByRef cp2() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef ns As Integer, ByRef nc As Integer, ByRef DealingPlaceP2 As Integer)
+        Dim RequestNumber As Integer
+
+        Console.Clear()
+
+        Console.WriteLine("P2's TURN")
+        Console.WriteLine()
+        Console.WriteLine("Displaying P2's hand")
+        Console.WriteLine("P2's Hand: ")
+        DisplayHand(sp2, cp2, DealingPlaceP2)
+        Console.WriteLine()
+        Console.Write("The last card played is: ")
+        Convert(ns, nc)
+        Console.WriteLine()
+
+        PlayCard(sp2, cp2, sdeck, cdeck, ns, nc, DealingPlaceP2, RequestNumber) 'check valid / word card
+
+        If RequestNumber = 0 Then 'draw a card then determine whether play card or not, otherwise the turn is finshed
+
+            Deal(sp2, cp2, sdeck, cdeck, DealingPlaceP2)
+            Console.WriteLine()
+            Console.WriteLine("Your current hand:")
+            DisplayHand(sp2, cp2, DealingPlaceP2)
+
+            Console.Write("The last card played is: ")
+            Convert(ns, nc)
+            Console.WriteLine()
+
+            PlayCard(sp2, cp2, sdeck, cdeck, ns, nc, DealingPlaceP2, RequestNumber) 'check valid / word card
+
+            If RequestNumber = 0 Then 'skip the turn and punish +2
+                If ns = 12 Then '+2
+                    Console.WriteLine("Draw two extra cards!")
+                    Deal(sp2, cp2, sdeck, cdeck, DealingPlaceP2)
+                    Deal(sp2, cp2, sdeck, cdeck, DealingPlaceP2)
+                    ns = 13
+
+                    Console.WriteLine()
+                    Console.WriteLine("Your current hand:")
+                    DisplayHand(sp2, cp2, DealingPlaceP2)
+                    Console.WriteLine()
+                    Console.WriteLine("Press any key to continue")
+                    Console.ReadKey()
+                End If
+            End If
+        End If
+
+    End Sub
+
+    Sub PlayGameWithPlayer(ByRef sp1() As Integer, ByRef cp1() As Integer, ByRef sp2() As Integer, ByRef cp2() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef DealingPlaceP1 As Integer, ByRef DealingPlaceP2 As Integer, ByRef ns As Integer, ByRef nc As Integer)
+
+        SetUpHand(sp1, cp1, sp2, cp2, sdeck, cdeck, DealingPlaceP1, DealingPlaceP2)
+        ns = -1 'First card has no restriction
+        nc = -1
+
+        Console.Clear()
+        Console.WriteLine("GAME START")
+        Console.WriteLine()
+        Console.WriteLine()
+
+        Do While DealingPlaceP1 <> 0 And DealingPlaceP2 <> 0
+
+            TurnP1(sp1, cp1, sdeck, cdeck, ns, nc, DealingPlaceP1)
+
+            If DealingPlaceP1 <> 0 Then
+                TurnP2(sp2, cp2, sdeck, cdeck, ns, nc, DealingPlaceP2)
+            End If
+
+        Loop
+
+        If DealingPlaceP1 = 0 Then
+            Console.WriteLine()
+            Console.WriteLine("P1 has won!")
+            Console.WriteLine("Press any key to continue")
+            Console.ReadKey()
+        End If
+
+        If DealingPlaceP2 = 0 Then
+            Console.WriteLine()
+            Console.WriteLine("P2 has won!")
+            Console.WriteLine("Press any key to continue")
+            Console.ReadKey()
+        End If
+
+    End Sub
+
+
+    Sub TurnPlayer(ByRef sp1() As Integer, ByRef cp1() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef ns As Integer, ByRef nc As Integer, ByRef DealingPlaceP1 As Integer, ByRef AICardNumber As Integer)
+        Dim RequestNumber As Integer
+
+        Console.Clear()
+        Console.WriteLine("YOUR TURN")
+        Console.WriteLine()
+        Console.WriteLine("Displaying your hand")
+        Console.WriteLine("Your Hand: ")
+        DisplayHand(sp1, cp1, DealingPlaceP1)
+        Console.WriteLine()
+        Console.Write("The last card played is: ")
+        Convert(ns, nc)
+        Console.WriteLine("Number of cards AI has is : " & AICardNumber)
+        Console.WriteLine()
+
+        PlayCard(sp1, cp1, sdeck, cdeck, ns, nc, DealingPlaceP1, RequestNumber) 'check valid / word card
+
+        If RequestNumber = 0 Then 'draw a card then determine whether play card or not, otherwise the turn is finshed
+
+            Deal(sp1, cp1, sdeck, cdeck, DealingPlaceP1)
+            Console.WriteLine()
+            Console.WriteLine("Your current hand:")
+            DisplayHand(sp1, cp1, DealingPlaceP1)
+            Console.WriteLine()
+            Console.Write("The last card played is: ")
+            Convert(ns, nc)
+            Console.WriteLine()
+
+            PlayCard(sp1, cp1, sdeck, cdeck, ns, nc, DealingPlaceP1, RequestNumber) 'check valid / word card
+
+            If RequestNumber = 0 Then 'skip the turn and punish +2
+                If ns = 12 Then '+2
+                    Console.WriteLine("Draw two extra cards!")
+                    Deal(sp1, cp1, sdeck, cdeck, DealingPlaceP1)
+                    Deal(sp1, cp1, sdeck, cdeck, DealingPlaceP1)
+                    ns = 13
+
+                    Console.WriteLine()
+                    Console.WriteLine("Your current hand:")
+                    DisplayHand(sp1, cp1, DealingPlaceP1)
+                    Console.WriteLine()
+                    Console.WriteLine("Press any key to continue")
+                    Console.ReadKey()
+                End If
+            End If
+        End If
+
+    End Sub
+
+
+    Sub TurnAI(ByRef sp1() As Integer, ByRef cp1() As Integer, ByRef sp2() As Integer, ByRef cp2() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef ns As Integer, ByRef nc As Integer, ByRef DealingPlaceP1 As Integer, ByRef DealingPlaceP2 As Integer)
+        Dim i, s, c As Integer
+        Dim Probability(107) As Single
+        Dim unknown(14, 5) As Integer
+        Dim UnknownNumber As Integer = 0
+
+        'determine the unkonwn card in player's hand or deck
+        For s = 0 To 14
+            For c = 1 To 5
+                unknown(s, c) = 0
+            Next
+        Next
+
+        For i = 0 To 107
+            For s = 0 To 14
+                For c = 1 To 5
+                    If sp1(i) = s And cp1(i) = c Then
+                        unknown(s, c) += 1
+                        UnknownNumber += 1
+                    End If
+
+                    If sdeck(i) = s And cdeck(i) = c Then
+                        unknown(s, c) += 1
+                        UnknownNumber += 1
+                    End If
+                Next
+            Next
+        Next
+
+
+
+        'determine the card that can be played in this turn
+        For i = 0 To 107
+            Probability(i) = 0
+        Next
+
+        For i = 0 To DealingPlaceP2 - 1 'check hand
+            If ((ns = sp2(i) Or nc = cp2(i)) And (ns <= 9 Or ns = 13)) Or (ns = 12 And sp2(i) = 14) Then 'last palyed is number card / +2 
+                Probability(i) = 1
+            End If
+        Next
+
+        'calculate the exact probability for each card
+        If DealingPlaceP1 > 2 And DealingPlaceP2 > 2 Then  'early stage
+
+            If DealingPlaceP1 < DealingPlaceP2 Then ' player in advantage
+
+                For i = 0 To DealingPlaceP2 - 1
+                    If Probability(i) = 1 Then 'this card can be played in this turn
+                        Probability(i) = 0
+                        If sp2(i) <= 9 Then 'calculate probability for number card
+
+                            For s = 0 To 14
+                                For c = 1 To 5
+                                    If s = sp2(i) Or c = cp2(i) Then
+                                        Probability(i) += unknown(s, c) 'shows the number of card in player's hand or deck that can follow if this card is played
+                                    End If
+                                Next
+                            Next
+
+                            Probability(i) = 1 - (Probability(i) / UnknownNumber) ' the proportion of cards that can not follow this card
+                        Else 'probability of word cards
+                            Select Case sp2(i)
+                                Case 10 Or 11 'skip
+                                    Probability(i) = 69 / 108 'always less than number card
+                                Case 12
+
+
+
+
+
+
+                            End Select
+
+
+
+                        End If
+                    End If
+
+                Next
+
+
+
+            End If
+
+
+
+
+
+        End If
+
+
+
+
+
+
+    End Sub
+
+
+
+    Sub PlayGameWithAI(ByRef sp1() As Integer, ByRef cp1() As Integer, ByRef sp2() As Integer, ByRef cp2() As Integer, ByRef sdeck() As Integer, ByRef cdeck() As Integer, ByRef DealingPlaceP1 As Integer, ByRef DealingPlaceP2 As Integer, ByRef ns As Integer, ByRef nc As Integer)
+
+
+
+        SetUpHand(sp1, cp1, sp2, cp2, sdeck, cdeck, DealingPlaceP1, DealingPlaceP2)
+        ns = -1 'First card has no restriction
+        nc = -1
+
+        Console.Clear()
+        Console.WriteLine("GAME START")
+        Console.WriteLine()
+        Console.WriteLine()
+
+        Do While DealingPlaceP1 <> 0 And DealingPlaceP2 <> 0
+
+            TurnPlayer(sp1, cp1, sdeck, cdeck, ns, nc, DealingPlaceP1, DealingPlaceP2)
+
+            If DealingPlaceP1 <> 0 Then
+                TurnAI(sp1, cp1, sp2, cp2, sdeck, cdeck, ns, nc, DealingPlaceP1, DealingPlaceP2)
+
+            End If
+
+        Loop
+
+        If DealingPlaceP1 = 0 Then
+            Console.WriteLine()
+            Console.WriteLine("You have won!")
+            Console.WriteLine("Press any key to continue")
+            Console.ReadKey()
+        End If
+
+        If DealingPlaceP2 = 0 Then
+            Console.WriteLine()
+            Console.WriteLine("You have lost!")
+            Console.WriteLine("Press any key to continue")
+            Console.ReadKey()
+        End If
+
+    End Sub
+
+    Sub Main()
+        Dim MenuChoice As Integer
+        Dim cp1(107), cp2(107), cdeck(107) As Integer ' 1 means Red, 2 means Golden, 3 means Green, 4 means Blue, 5 means wild, -1 means none, -2 means back
+        Dim sp1(107), sp2(107), sdeck(107) As Integer ' 0~9, 10 means skip, 11 means skip, 12 means +2, 13 means wild, 14 means wild +4, -1 means none, -2 means back
+        Dim nc, ns As Integer 'next needed card: -1 means any
+        Dim DealingPlaceP1, DealingPlaceP2 As Integer
+        Dim Validity As Boolean = False
+
+        Do
+            Console.Clear()
+            ' Console.ForegroundColor() = ConsoleColor.Blue
+            Console.WriteLine("UNO Games")
+            Console.WriteLine("")
+            Console.WriteLine("1. Play against AI (Under developing)")
+            Console.WriteLine("2. Play against player")
+            Console.WriteLine("0. End game")
+            Console.WriteLine("")
+            Console.WriteLine("Please enter your choice")
+
+            MenuChoice = Console.ReadLine
+            If MenuChoice = 1 Then
+                SettingUpDeck(sdeck, cdeck)
+                PlayGameWithAI(sp1, cp1, sp2, cp2, sdeck, cdeck, DealingPlaceP1, DealingPlaceP2, ns, nc)
+
+
+            ElseIf MenuChoice = 2 Then
+                SettingUpDeck(sdeck, cdeck)
+                PlayGameWithPlayer(sp1, cp1, sp2, cp2, sdeck, cdeck, DealingPlaceP1, DealingPlaceP2, ns, nc)
+            End If
+        Loop Until MenuChoice = 0
+
+    End Sub
+
+End Module

@@ -1,0 +1,393 @@
+<Project>
+  <Name>UnoGame</Name>
+  <ProjectItem type="NClass.DiagramEditor.ClassDiagram.Diagram" assembly="NClass.DiagramEditor, Version=2.4.1823.0, Culture=neutral, PublicKeyToken=null">
+    <Name>UnoGame</Name>
+    <Language>CSharp</Language>
+    <Entities>
+      <Entity type="Class">
+        <Name>Game</Name>
+        <Access>Public</Access>
+        <Location left="1609" top="346" />
+        <Size width="162" height="451" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public Boolean AlreadyDraw</Member>
+        <Member type="Field">public Integer DealingPlaceP1</Member>
+        <Member type="Field">public Integer DealingPlaceP2</Member>
+        <Member type="Field">public Integer DeckRemained</Member>
+        <Member type="Field">public Card FixedDeck</Member>
+        <Member type="Field">public Data HandData</Member>
+        <Member type="Field">public LastPlayedCard LastPlayed</Member>
+        <Member type="Field">public Card P1Hand</Member>
+        <Member type="Field">public Card P2Hand</Member>
+        <Member type="Field">public String WhoseTurn</Member>
+        <Member type="Method">public void DrawPictureBox()</Member>
+        <Member type="Method">public void GiveUpTurn()</Member>
+        <Member type="Method">public new void New()</Member>
+        <Member type="Method">public void PlayCard()</Member>
+        <Member type="Method">public void RefreshCards()</Member>
+        <Member type="Method">public void RemoveCard()</Member>
+        <Member type="Method">public void RevealALLHand()</Member>
+        <Member type="Method">public void SetUpDeck()</Member>
+        <Member type="Method">public void TurnStart()</Member>
+        <Member type="Method">protected Boolean CheckValidity()</Member>
+        <Member type="Method">private void DecideFirstTurn()</Member>
+        <Member type="Method">private void SteUpHand()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>PlayerGame</Name>
+        <Access>Public</Access>
+        <Location left="1609" top="915" />
+        <Size width="162" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void PlayCard()</Member>
+        <Member type="Method">public override void RefreshCards()</Member>
+        <Member type="Method">public override void TurnStart()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>AIGame</Name>
+        <Access>Public</Access>
+        <Location left="1841" top="915" />
+        <Size width="189" height="216" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void DrawPictureBox()</Member>
+        <Member type="Method">public void NewMethod()</Member>
+        <Member type="Method">public override void PlayCard()</Member>
+        <Member type="Method">public override void RefreshCards()</Member>
+        <Member type="Method">public override void TurnStart()</Member>
+        <Member type="Method">protected String AIDecideWildColour()</Member>
+        <Member type="Method">protected void AIFindSolution()</Member>
+        <Member type="Method">protected void AINoSolutionFound()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>EasyAIGame</Name>
+        <Access>Public</Access>
+        <Location left="2096" top="1206" />
+        <Size width="200" height="136" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">protected String AIDecideWildColour()</Member>
+        <Member type="Method">protected override void AIFindSolution()</Member>
+        <Member type="Method">private void AIMakeDecision()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>HardAIGame</Name>
+        <Access>Public</Access>
+        <Location left="1841" top="1206" />
+        <Size width="200" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">protected String AIDecideWildColour()</Member>
+        <Member type="Method">protected override void AIFindSolution()</Member>
+        <Member type="Method">private void AIMakeDecision()</Member>
+        <Member type="Method">private void GatherData()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>CheaterAIGame</Name>
+        <Access>Public</Access>
+        <Location left="1583" top="1206" />
+        <Size width="200" height="213" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">public override void Deal()</Member>
+        <Member type="Method">protected String AIDecideWildColour()</Member>
+        <Member type="Method">protected override void AIFindSolution()</Member>
+        <Member type="Method">protected override void SetUpDeck()</Member>
+        <Member type="Method">private void AIMakeDecision()</Member>
+        <Member type="Method">private void GatherData()</Member>
+        <Member type="Method">private void Solution_AIHasAd()</Member>
+        <Member type="Method">private void Solution_PlayerHasAd()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>Card</Name>
+        <Access>Public</Access>
+        <Location left="1929" top="371" />
+        <Size width="162" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public String Type</Member>
+        <Member type="Field">public String Colour</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>LastPlayedCard</Name>
+        <Access>Public</Access>
+        <Location left="1929" top="538" />
+        <Size width="162" height="111" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public String WildColour</Member>
+        <Member type="Field">public Boolean IfPunished</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FormGameMenu</Name>
+        <Access>Public</Access>
+        <Location left="2325" top="446" />
+        <Size width="223" height="166" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static String WildColour</Member>
+        <Member type="Method">private void ButtonPlayAgainstPlayer_Click()</Member>
+        <Member type="Method">private void ButtonPlayAgainstAI_Click()</Member>
+        <Member type="Method">private void ButtonExit_Click()</Member>
+        <Member type="Method">private void Button1_Click()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FormPlayAgainstAI</Name>
+        <Access>Public</Access>
+        <Location left="2365" top="709" />
+        <Size width="217" height="366" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static Integer P1WinCounter</Member>
+        <Member type="Field">public static Integer P2WinCounter</Member>
+        <Member type="Field">public static Boolean GameStart</Member>
+        <Member type="Field">public static Boolean Debug</Member>
+        <Member type="Field">public static EasyAIGame CurrentGameEasy</Member>
+        <Member type="Field">public static HardAIGame CurrentGameHard</Member>
+        <Member type="Field">public static CheaterAIGame CurrentGameCheater</Member>
+        <Member type="Field">public static List PB</Member>
+        <Member type="Field">public static Label Lab2</Member>
+        <Member type="Field">public static Label Lab3</Member>
+        <Member type="Field">public static Label Msg</Member>
+        <Member type="Field">public static String Difficulty</Member>
+        <Member type="Method">private void FormPlayAgainstAI_Load()</Member>
+        <Member type="Method">private void PictureBox42_Click()</Member>
+        <Member type="Method">private void PictureBox1_Click()</Member>
+        <Member type="Method">private void Button1_Click()</Member>
+        <Member type="Method">private void Button2_Click()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FormPlayAgainstPlayer</Name>
+        <Access>Public</Access>
+        <Location left="2096" top="709" />
+        <Size width="211" height="383" />
+        <Collapsed>False</Collapsed>
+        <Member type="Field">public static Integer P1WinCounter</Member>
+        <Member type="Field">public static Integer P2WinCounter</Member>
+        <Member type="Field">public static Boolean GameStart</Member>
+        <Member type="Field">public static Boolean Debug</Member>
+        <Member type="Field">public static PlayerGame CurrentGame</Member>
+        <Member type="Field">public static List PB</Member>
+        <Member type="Field">public static Label Lab2</Member>
+        <Member type="Field">public static Label Lab3</Member>
+        <Member type="Field">public static Label Msg</Member>
+        <Member type="Method">private void FormPlayAgainstPlayer_Load()</Member>
+        <Member type="Method">private void PictureBox42_Click()</Member>
+        <Member type="Method">private void PictureBox1_Click()</Member>
+        <Member type="Method">private void PictureBox21_Click()</Member>
+        <Member type="Method">private void PictureBox1_MouseEnter()</Member>
+        <Member type="Method">private void PictureBox21_MouseEnter()</Member>
+        <Member type="Method">private void PictureBox1_MouseLeave()</Member>
+        <Member type="Method">private void PictureBox21_MouseLeave()</Member>
+        <Member type="Method">private void Button1_Click()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FormRules</Name>
+        <Access>Public</Access>
+        <Location left="2126" top="457" />
+        <Size width="162" height="145" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">private void Button1_Click()</Member>
+        <Member type="Method">private void Button2_Click()</Member>
+        <Member type="Method">private void Button3_Click()</Member>
+        <Member type="Method">private void Button4_Click()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FormChooseWildColour</Name>
+        <Access>Public</Access>
+        <Location left="1824" top="682" />
+        <Size width="230" height="117" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">private void FormChooseWildColour_Load()</Member>
+        <Member type="Method">private void PictureBox1_Click()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+      <Entity type="Class">
+        <Name>FormChooseAI</Name>
+        <Access>Public</Access>
+        <Location left="2431" top="1206" />
+        <Size width="169" height="150" />
+        <Collapsed>False</Collapsed>
+        <Member type="Method">private void FormChooseAI_Load()</Member>
+        <Member type="Method">private void Button1_Click()</Member>
+        <Member type="Method">private void Button2_Click()</Member>
+        <Member type="Method">private void Button3_Click()</Member>
+        <Modifier>None</Modifier>
+      </Entity>
+    </Entities>
+    <Relationships>
+      <Relationship type="Generalization" first="1" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>1685</X>
+          <Y>881</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1685</X>
+          <Y>822</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="2" second="0">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>1751</X>
+          <Y>822</Y>
+        </BendPoint>
+      </Relationship>
+      <Relationship type="Generalization" first="3" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="4" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="5" second="2">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Generalization" first="7" second="6">
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+      </Relationship>
+      <Relationship type="Association" first="0" second="6">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="7">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="8" second="9">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="8" second="10">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="8" second="11">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="False">
+          <X>2313</X>
+          <Y>533</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="9" second="13">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2607</X>
+          <Y>856</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2512</X>
+          <Y>1181</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="0" second="12">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="10" second="1">
+        <Label>
+        </Label>
+        <StartOrientation>Horizontal</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2066</X>
+          <Y>839</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1733</X>
+          <Y>881</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="9" second="5">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2393</X>
+          <Y>1107</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1671</X>
+          <Y>1454</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="9" second="4">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Vertical</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2394</X>
+          <Y>1102</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>1933</X>
+          <Y>1386</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+      <Relationship type="Association" first="9" second="3">
+        <Label>
+        </Label>
+        <StartOrientation>Vertical</StartOrientation>
+        <EndOrientation>Horizontal</EndOrientation>
+        <BendPoint relativeToStartShape="True">
+          <X>2393</X>
+          <Y>1100</Y>
+        </BendPoint>
+        <BendPoint relativeToStartShape="False">
+          <X>2321</X>
+          <Y>1276</Y>
+        </BendPoint>
+        <Direction>Unidirectional</Direction>
+        <AssociationType>Composition</AssociationType>
+      </Relationship>
+    </Relationships>
+  </ProjectItem>
+</Project>
